@@ -18,9 +18,16 @@ public class App {
         List<Map<String, String>> listaDeFilmes = parser.parse(body);
         
         for (Map<String, String> filme : listaDeFilmes) {
-            System.out.println(filme.get("title"));
+            var rating = Integer.parseInt(filme.get("imDbRating").substring(0, 1));
+            var stars = "";
+
+            for (int i = 0; i < rating; i++) {
+                stars += "\u2B50";
+            }
+
+            System.out.println(stars);
+            System.out.println("\u001b[37;1m \u001b[44;1m" + filme.get("title") + "\u001b[m");
             System.out.println(filme.get("image"));
-            System.out.println(filme.get("imDbRating"));
             System.out.println();
         }
     }
